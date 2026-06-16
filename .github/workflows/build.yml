@@ -15,9 +15,9 @@ jobs:
 
       - name: Install prerequisites
         run: |
-          apt-get update -y \
-            && apt-get upgrade -y \
-            && apt-get install -y g++ git cmake nodejs pkg-config libfmt-dev liblzo2-dev libzstd-dev zlib1g-dev
+          sudo apt-get update -y \
+            && sudo apt-get upgrade -y \
+            && sudo apt-get install -y g++ git cmake nodejs pkg-config libfmt-dev liblzo2-dev libzstd-dev zlib1g-dev
 
       - name: Build and install
         run: |
