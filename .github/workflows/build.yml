@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/upload-artifact@v7
+        uses: actions/checkout@v4
 
       - name: Set env vars
         run: |
@@ -38,7 +38,7 @@ jobs:
             && cmake --build release-work --parallel `nproc`
             && cmake --install release-work
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v7
         with:
           name: ${{ github.sha }}
           overwrite: true
