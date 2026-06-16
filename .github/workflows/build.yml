@@ -23,14 +23,14 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=${PWD}/install/debug \
             -DCMAKE_INSTALL_INCLUDEDIR=../include \
             -DWITH_OPENSSL=ON -DENABLE_KRB5=ON \
-            -S . -B debug-work
-            && cmake --build debug-work --parallel `nproc`
+            -S . -B debug-work \
+            && cmake --build debug-work --parallel `nproc` \
             && cmake --install debug-work \
             && cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_INSTALL_PREFIX=${PWD}/install \
             -DWITH_OPENSSL=ON -DENABLE_KRB5=ON \
-            -S . -B release-work
-            && cmake --build release-work --parallel `nproc`
+            -S . -B release-work \
+            && cmake --build release-work --parallel `nproc` \
             && cmake --install release-work
 
       - uses: actions/upload-artifact@v7
