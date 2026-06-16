@@ -9,10 +9,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set env vars
-        run: |
-          echo "SHORT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-
       - name: Install prerequisites
         run: |
           sudo apt-get update -y \
@@ -27,13 +23,13 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=${PWD}/install/debug \
             -DCMAKE_INSTALL_INCLUDEDIR=../include \
             -DWITH_OPENSSL=ON -DENABLE_KRB5=ON \
-            -S ${SHORT_SHA} -B debug-work
+            -S . -B debug-work
             && cmake --build debug-work --parallel `nproc`
             && cmake --install debug-work \
             && cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_INSTALL_PREFIX=${PWD}/install \
             -DWITH_OPENSSL=ON -DENABLE_KRB5=ON \
-            -S ${SHORT_SHA} -B release-work
+            -S . -B release-work
             && cmake --build release-work --parallel `nproc`
             && cmake --install release-work
 
